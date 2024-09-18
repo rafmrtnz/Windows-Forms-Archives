@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SIS" Class="RegistrationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SIS;Integrated Security=True;Encrypt=False" SettingsObjectName="StudentInformationSystem.Properties.Settings" SettingsPropertyName="SISConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HouseNumber" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Barangay" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Address" Member="Student" ThisKey="Id" OtherKey="Id" Type="Student" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentMajor" Member="StudentMajors">
+    <Type Name="StudentMajor">
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MajorId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Major_StudentMajor" Member="Major" ThisKey="MajorId" OtherKey="Id" Type="Major" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Student_StudentMajor" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course" Member="Courses">
+    <Type Name="Course">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Course_StudentCourse" Member="StudentCourses" ThisKey="Id" OtherKey="CourseId" Type="StudentCourse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Major" Member="Majors">
+    <Type Name="Major">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Major_StudentMajor" Member="StudentMajors" ThisKey="Id" OtherKey="MajorId" Type="StudentMajor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Middlename" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Address" Member="Address" ThisKey="Id" OtherKey="Id" Type="Address" Cardinality="One" />
+      <Association Name="Student_StudentMajor" Member="StudentMajors" ThisKey="Id" OtherKey="StudentId" Type="StudentMajor" />
+      <Association Name="Student_StudentCourse" Member="StudentCourses" ThisKey="Id" OtherKey="StudentId" Type="StudentCourse" />
+      <Association Name="Student_Email" Member="Email" ThisKey="Id" OtherKey="Id" Type="Email" Cardinality="One" />
+      <Association Name="Student_Mobile" Member="Mobile" ThisKey="Id" OtherKey="Id" Type="Mobile" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentCourse" Member="StudentCourses">
+    <Type Name="StudentCourse">
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CourseId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Course_StudentCourse" Member="Course" ThisKey="CourseId" OtherKey="Id" Type="Course" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Student_StudentCourse" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Email" Member="Emails">
+    <Type Name="Email">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Email" Member="Student" ThisKey="Id" OtherKey="Id" Type="Student" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mobile" Member="Mobiles">
+    <Type Name="Mobile">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Mobile" Member="Student" ThisKey="Id" OtherKey="Id" Type="Student" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.RemoveRecord" Method="RemoveRecord">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FindRecord" Method="FindRecord">
+    <Parameter Name="Key" Parameter="key" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="FindRecordResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Middlename" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="HouseNumber" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Barangay" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseProgram" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MajorProgram" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FetchAllRecord" Method="FetchAllRecord">
+    <ElementType Name="FetchAllRecordResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Middlename" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="HouseNumber" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Barangay" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseProgram" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MajorProgram" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FetchAllCourses" Method="FetchAllCourses">
+    <ElementType Name="FetchAllCoursesResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.FetchAllMajor" Method="FetchAllMajor">
+    <ElementType Name="FetchAllMajorResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UpdateRecord" Method="UpdateRecord">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Firstname" Parameter="firstname" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Middlename" Parameter="middlename" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Lastname" Parameter="lastname" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="HouseNumber" Parameter="houseNumber" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Street" Parameter="street" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Barangay" Parameter="barangay" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Province" Parameter="province" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Zip" Parameter="zip" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Course" Parameter="course" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Major" Parameter="major" Type="System.String" DbType="VarChar(255)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckEmailExist" Method="CheckEmailExist">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="CheckEmailExistResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CheckMobileNumberExist" Method="CheckMobileNumberExist">
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="CheckMobileNumberExistResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SaveRecord" Method="SaveRecord">
+    <Parameter Name="Firstname" Parameter="firstname" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Middlename" Parameter="middlename" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Lastname" Parameter="lastname" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="HouseNumber" Parameter="houseNumber" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Street" Parameter="street" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Barangay" Parameter="barangay" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Province" Parameter="province" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Zip" Parameter="zip" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Course" Parameter="course" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Major" Parameter="major" Type="System.String" DbType="VarChar(255)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
