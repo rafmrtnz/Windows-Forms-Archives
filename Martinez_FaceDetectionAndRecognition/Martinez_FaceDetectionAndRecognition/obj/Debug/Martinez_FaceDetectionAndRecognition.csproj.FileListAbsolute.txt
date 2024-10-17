@@ -1,0 +1,11 @@
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\bin\Debug\Martinez_FaceDetectionAndRecognition.exe.config
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\bin\Debug\Martinez_FaceDetectionAndRecognition.exe
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\bin\Debug\Martinez_FaceDetectionAndRecognition.pdb
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.csproj.AssemblyReference.cache
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.Form1.resources
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.Properties.Resources.resources
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.csproj.GenerateResource.cache
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.csproj.CoreCompileInputs.cache
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.csproj.CopyComplete
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.exe
+C:\Users\raffi\source\repos\Martinez_FaceDetectionAndRecognition\obj\Debug\Martinez_FaceDetectionAndRecognition.pdb
