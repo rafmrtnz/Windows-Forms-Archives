@@ -65,7 +65,6 @@ namespace Martinez_FlappyBird
 			// 
 			// flappyBird
 			// 
-			this.flappyBird.Image = global::Martinez_FlappyBird.Properties.Resources.myface;
 			this.flappyBird.Location = new System.Drawing.Point(97, 275);
 			this.flappyBird.Name = "flappyBird";
 			this.flappyBird.Size = new System.Drawing.Size(73, 52);
