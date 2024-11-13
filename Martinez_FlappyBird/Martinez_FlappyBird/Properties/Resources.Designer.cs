@@ -83,6 +83,16 @@ namespace Martinez_FlappyBird.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap myface {
+            get {
+                object obj = ResourceManager.GetObject("myface", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pipe {
             get {
                 object obj = ResourceManager.GetObject("pipe", resourceCulture);
@@ -96,16 +106,6 @@ namespace Martinez_FlappyBird.Properties {
         internal static System.Drawing.Bitmap pipedown {
             get {
                 object obj = ResourceManager.GetObject("pipedown", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Untitled__80_x_60_px_ {
-            get {
-                object obj = ResourceManager.GetObject("Untitled (80 x 60 px)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

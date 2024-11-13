@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="Resources\bird.png" />
     <Content Include="Resources\ground.png" />
+    <None Include="Resources\myface.png" />
     <Content Include="Resources\pipe.png" />
     <Content Include="Resources\pipedown.png" />
     <None Include="Resources\Untitled %2880 x 60 px%29.png" />
